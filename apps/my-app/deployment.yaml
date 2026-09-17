@@ -25,7 +25,7 @@ spec:
 
       containers:
         - name: my-app
-          image: 192.168.38.136:8083/devsecops-app:41-bbc5321
+          image: 192.168.38.136:8083/devsecops-app:42-f30df0e
           imagePullPolicy: IfNotPresent
 
           ports:
