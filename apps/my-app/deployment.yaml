@@ -33,10 +33,14 @@ spec:
               containerPort: 8080
               protocol: TCP
 
+            - name: actuator
+              containerPort: 8081
+              protocol: TCP
+
           readinessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /actuator/health
+              port: actuator
             initialDelaySeconds: 120
             periodSeconds: 10
             timeoutSeconds: 5
@@ -45,8 +49,8 @@ spec:
 
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /actuator/health
+              port: actuator
             initialDelaySeconds: 120
             periodSeconds: 20
             timeoutSeconds: 5
@@ -54,12 +58,12 @@ spec:
             successThreshold: 1
 
           resources:
-            limits:
-              cpu: 500m
-              memory: 512Mi
             requests:
               cpu: 100m
               memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
 
           securityContext:
             allowPrivilegeEscalation: false
